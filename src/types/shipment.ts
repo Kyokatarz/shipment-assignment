@@ -12,11 +12,12 @@ export type PortCall = {
 }
 
 export type Order = {
-  loading: Loading
+  discharging: Task
+  loading: Task
   orderId: string
 }
 
-export type Loading = {
+export type Task = {
   portCallId: number
   duration: number
 }
