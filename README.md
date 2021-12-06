@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+### Solution to the shipment problem
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Thought process:
 
-## Available Scripts
+- I immediately spitted the problem into smaller ones:
+  - Creating events when the vessel is docked.
+  - Creating events when the vessel is travelling to another port.
+- When reading the problem, I realized that when docked, the vessel is always in either of the three state: Loading, Discharging or Idle-ing.
+- So I filter all of the discharging and loading task which related to the current port call.
+- Then for each task, I push an event to the events array (which later be rendered in to table row).
+- Also, I realized if there is leftover time until the vessel leaves the port, tt is going to be idle. So I push an "Idle" event to the events array if there is time left.
+- By that, I've finished handling the case where the shipment is docked
 
-In the project directory, you can run:
+- Next up, is to handle the case where the vessel is travelling to another port.
+- When the ship leaves a port, it will always end up somewhere else. That somewhere else has a time of arrival, which is the soonest time after leaving the previous port.
+- The difference of those times are the travelling time.
+- To determine whether the vessel is empty or not. I used an array to keep track of the itemIds that are currently in the vessel.
 
-### `yarn start`
+A few things to take notes:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- The algorithm to determine whether the vessel is empty or not needs changing if the vessel only discharges a partial of an item. For example, if the vessel carries 2kgs of bananas, and visits 2 different ports for 1 kg each, then the current algorithm is not correct.
+- Could display an empty page indicating that there is no callports/orders on the vessel.
+- UI enhancement
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+TODO:
+[ ] Write unit tests
+[ ] Stylings through tailwind

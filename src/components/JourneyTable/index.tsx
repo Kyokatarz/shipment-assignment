@@ -45,8 +45,8 @@ const JourneyTable = ({ data }: Props) => {
         (order) => order.loading.portCallId === portCallId
       )
 
-      //For each discharge order, push an event
       //? Code explain: destructure orderId, and "duration" from "discharging" inner object,
+      //For each discharge order, push an event
       allDischargingOrders.forEach(({ orderId, discharging: { duration } }) => {
         //Push an event called Discharging
         const taskStart = startAt + timeUsed
@@ -64,7 +64,7 @@ const JourneyTable = ({ data }: Props) => {
         //The duration of the task is added to timeUsed
         timeUsed += duration
 
-        //Remove that cargo into the cargo array
+        //Remove that cargo from the cargo array
         cargosOnShip = cargosOnShip.filter((id) => id !== orderId)
       })
 
@@ -122,8 +122,6 @@ const JourneyTable = ({ data }: Props) => {
           endAt: nextArrivalTime,
           duration: nextArrivalTime - endAt,
         })
-
-      console.log({ nextArrivalTime })
     })
 
     return events.sort((a, b) => a.startAt - b.startAt)
