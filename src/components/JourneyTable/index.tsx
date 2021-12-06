@@ -125,7 +125,10 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
     return events.sort((a, b) => a.startAt - b.startAt)
   }, [orders, portCalls])
 
-  const eventsToRender = mappingToEvents()
+  const eventsToRender = React.useMemo(
+    () => mappingToEvents(),
+    [mappingToEvents]
+  )
 
   return (
     <table className='table-auto table w-full'>
