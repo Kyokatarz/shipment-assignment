@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import JourneyTable from './components/JourneyTable'
 import { useData } from './hooks/useData'
+import './global.css'
 
 function App() {
   const { data, error } = useData()
