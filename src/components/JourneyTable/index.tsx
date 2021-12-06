@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Shipment } from '../../types'
 import TableRow from '../TableRow'
 
@@ -17,10 +17,8 @@ export type Event = {
 
 const tableHead = ['Event', 'Order ID', 'Port', 'Start', 'End', 'Duration']
 
-const JourneyTable = ({ data }: Props) => {
-  const { orders, portCalls } = data
-
-  function mappingToEvents() {
+const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
+  const mappingToEvents = useCallback(() => {
     const events: Event[] = []
     let cargosOnShip: string[] = []
 
@@ -125,7 +123,7 @@ const JourneyTable = ({ data }: Props) => {
     })
 
     return events.sort((a, b) => a.startAt - b.startAt)
-  }
+  }, [orders, portCalls])
 
   const eventsToRender = mappingToEvents()
 
@@ -145,4 +143,4 @@ const JourneyTable = ({ data }: Props) => {
   )
 }
 
-export default JourneyTable
+export default React.memo(JourneyTable)
