@@ -43,7 +43,7 @@ const mockData = {
         portCallId: 2,
         duration: 6 * 60 * 60 * 1000,
       },
-      orderId: '101/Bananas',
+      orderId: '101/🍌',
     },
     {
       loading: {
@@ -54,7 +54,7 @@ const mockData = {
         portCallId: 2,
         duration: 6 * 60 * 60 * 1000,
       },
-      orderId: '102/Apples',
+      orderId: '102/🍎',
     },
     {
       loading: {
@@ -65,7 +65,7 @@ const mockData = {
         portCallId: 3,
         duration: 6 * 60 * 60 * 1000,
       },
-      orderId: '103/Bananas',
+      orderId: '103/🍌',
     },
     {
       loading: {
@@ -76,7 +76,7 @@ const mockData = {
         portCallId: 3,
         duration: 6 * 60 * 60 * 1000,
       },
-      orderId: '104/Apples',
+      orderId: '104/🍎',
     },
     {
       loading: {
@@ -87,7 +87,7 @@ const mockData = {
         portCallId: 3,
         duration: 6 * 60 * 60 * 1000,
       },
-      orderId: '105/Pears',
+      orderId: '105/🍐',
     },
     {
       loading: {
@@ -98,7 +98,7 @@ const mockData = {
         portCallId: 3,
         duration: 2 * 60 * 60 * 1000,
       },
-      orderId: '106/Hotdogs',
+      orderId: '106/🌭',
     },
 
     {
@@ -110,7 +110,7 @@ const mockData = {
         portCallId: 5,
         duration: 12 * 60 * 60 * 1000,
       },
-      orderId: '107/Beer',
+      orderId: '107/🍺',
     },
   ],
 }

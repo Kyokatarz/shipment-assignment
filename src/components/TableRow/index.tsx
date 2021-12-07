@@ -14,7 +14,7 @@ const TableRow = ({
   portName,
   orderId,
 }: Event) => {
-  const rowStyles = `border border-black ${
+  const rowStyles = `border border-black h-9 ${
     eventName === 'Idle' ? 'bg-red-400' : 'even:bg-blue-100 odd:bg-blue-200'
   } `
   return (
