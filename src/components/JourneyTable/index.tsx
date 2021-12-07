@@ -16,7 +16,7 @@ export type Event = {
   duration: number
 }
 
-const tableHead = ['Event', 'Order ID', 'Port', 'Start', 'End', 'Duration']
+const tableHead = ['Event', 'Order ID', 'Port', 'Start', 'End', 'Duration (h)']
 
 const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
   const mappingToEvents = useCallback(() => {

@@ -15,6 +15,7 @@ Thought process:
 - When the ship leaves a port, it will always end up somewhere else. That somewhere else has a time of arrival, which is the soonest time after leaving the previous port.
 - The difference of those times are the travelling time.
 - To determine whether the vessel is empty or not. I used an array to keep track of the itemIds that are currently in the vessel.
+- Add color red for the Idle event (because idle-ing is bad, I assumed?)
 
 A few things to take notes:
 
@@ -24,4 +25,5 @@ A few things to take notes:
 
 TODO:
 [ ] Write unit tests
-[ ] Stylings through tailwind
+[X] Stylings through tailwind
+[ ] Dynamic Routings for different shipments?

@@ -14,8 +14,11 @@ const TableRow = ({
   portName,
   orderId,
 }: Event) => {
+  const rowStyles = `border border-black ${
+    eventName === 'Idle' ? 'bg-red-400' : 'even:bg-blue-100 odd:bg-blue-200'
+  } `
   return (
-    <tr className='border border-black even:bg-blue-100 odd:bg-blue-200'>
+    <tr className={rowStyles}>
       <td className='pl-2'>{eventName}</td>
       <td className='text-center'>{portName}</td>
       <td className='text-center'>{orderId}</td>
