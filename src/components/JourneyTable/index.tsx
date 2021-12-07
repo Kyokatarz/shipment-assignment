@@ -123,7 +123,6 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
           duration: nextArrivalTime - previousEndAt,
         })
     })
-
     return events.sort((a, b) => a.startAt - b.startAt)
   }, [orders, portCalls])
 
@@ -133,20 +132,22 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
   )
 
   return (
-    <table className='table-auto table w-full'>
-      <thead>
-        {tableHead.map((title) => (
-          <th key={title} className='text-center bg-blue-600'>
-            {title}
-          </th>
-        ))}
-      </thead>
-      <tbody>
-        {eventsToRender.map((event) => (
-          <TableRow {...event} />
-        ))}
-      </tbody>
-    </table>
+    <div className='w-full flex justify-center'>
+      <table className='table-auto table w-3/4'>
+        <thead>
+          {tableHead.map((title) => (
+            <th key={title} className='text-center bg-blue-600 text-white'>
+              {title}
+            </th>
+          ))}
+        </thead>
+        <tbody>
+          {eventsToRender.map((event) => (
+            <TableRow {...event} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

@@ -15,13 +15,13 @@ const TableRow = ({
   orderId,
 }: Event) => {
   return (
-    <tr>
-      <td className='mx-4'>{eventName}</td>
-      <td className='mx-4'>{portName}</td>
-      <td className='mx-4'>{orderId}</td>
-      <td className='mx-4'>{formatToReadableDate(startAt)}</td>
-      <td className='mx-4'>{formatToReadableDate(endAt)}</td>
-      <td className='mx-4'>{formatToReadableDuration(duration)}</td>
+    <tr className='border border-black even:bg-blue-100 odd:bg-blue-200'>
+      <td className='pl-2'>{eventName}</td>
+      <td className='text-center'>{portName}</td>
+      <td className='text-center'>{orderId}</td>
+      <td className='text-center'>{formatToReadableDate(startAt)}</td>
+      <td className='text-center'>{formatToReadableDate(endAt)}</td>
+      <td className='text-center'>{formatToReadableDuration(duration)}</td>
     </tr>
   )
 }
