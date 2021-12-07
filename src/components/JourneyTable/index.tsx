@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { getDateAsNumber, getStartAndEndTime } from '../../helper/misc'
 import { Shipment } from '../../types'
 import TableRow from '../TableRow'
 
@@ -24,8 +25,7 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
 
     portCalls.forEach(({ portCallId, arrivingAt, leavingAt, portName }) => {
       //Converting these Date into number for easy manipulation
-      const startAt = arrivingAt.getTime()
-      const endAt = leavingAt.getTime()
+      const [startAt, endAt] = getDateAsNumber(arrivingAt, leavingAt)
 
       //Total time of the vessel spent in a port
       const totalTime = endAt - startAt
@@ -47,15 +47,14 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
       //For each discharge order, push an event
       allDischargingOrders.forEach(({ orderId, discharging: { duration } }) => {
         //Push an event called Discharging
-        const taskStart = startAt + timeUsed
-        const taskEnd = taskStart + duration
+        const { start, end } = getStartAndEndTime(startAt + timeUsed, duration)
 
         events.push({
           eventName: 'Discharging',
           portName,
           orderId,
-          startAt: taskStart,
-          endAt: taskEnd,
+          startAt: start,
+          endAt: end,
           duration: duration,
         })
 
@@ -108,17 +107,20 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
         (portCall) => portCall.arrivingAt.getTime() > leavingAt.getTime()
       )
 
+      if (!nextPortCall) return
+
       //And we'll have the nextArrivalTime
-      const nextArrivalTime = nextPortCall?.arrivingAt.getTime()
+      const [nextArrivalTime] = getDateAsNumber(nextPortCall.arrivingAt)
 
       //The duration of the travel starts from the leaving time, and finishes at the the next arrival time
       //Keep in mind that if there is no nextArrivalTime, then it's the last portCall. No need to push the travelling event.
+      const previousEndAt = endAt
       nextArrivalTime &&
         events.push({
           eventName: cargosOnShip.length > 0 ? 'Laden' : 'Ballast',
           startAt: endAt,
           endAt: nextArrivalTime,
-          duration: nextArrivalTime - endAt,
+          duration: nextArrivalTime - previousEndAt,
         })
     })
 
@@ -134,7 +136,9 @@ const JourneyTable = ({ data: { orders, portCalls } }: Props) => {
     <table className='table-auto table w-full'>
       <thead>
         {tableHead.map((title) => (
-          <th key={title}>{title}</th>
+          <th key={title} className='text-center bg-blue-600'>
+            {title}
+          </th>
         ))}
       </thead>
       <tbody>
